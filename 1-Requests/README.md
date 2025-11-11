@@ -5,7 +5,7 @@ pip install requests
 ```
 
 ### Requests 參數
-| 常用 | 常用參數 | 功能 |
+| 常用 | 參數 | 功能 |
 |:---:|:---------:|:-----:|
 | V | `url` | 請求的 URL |
 | V | `params` |URL 查詢參數，通常是一個字典 |
