@@ -1,5 +1,5 @@
 # Selenium
-[Chrome Options](#Chrome-Options) | [Webdriver 屬性與方法](#webdriver-屬性與方法) | [Webdriver 定位方法](#webdriver-定位方法)
+[Chrome Options](#Chrome-Options) | [Webdriver 屬性與方法](#webdriver-屬性與方法) | [Webdriver 定位方法](#webdriver-定位方法) | [CSS Selector](#css-selector)
 
 ### 安裝套件
 ```
@@ -55,7 +55,7 @@ curl -L -o chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-p
 | `add_cookie(cookie_dict)`   | 新增一筆 cookie          |
 
 
-## Webdriver 定位方法
+### Webdriver 定位方法
 | 定位方法 | 說明 |
 |---|---|
 | `find_element(By.ID, 'id')`      | 透過元素的 id 屬性來定位元素。    |
@@ -67,4 +67,39 @@ curl -L -o chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-p
 | `find_element(By.XPATH, 'xpath')`   | 透過 XPath 表達式來定位元素。適用於複雜的定位需求。     |
 | `find_element(By.CSS_SELECTOR, 'selector')`     | 透過 CSS 選擇器來定位元素。   |
 
+### CSS Selector
+| 說明            | 範例 HTML + CSS                                                                              | Selenium 使用                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| 按 tag 名稱選擇    | `<input>` | `driver.find_element(By.CSS_SELECTOR, "input")`                               |
+| 按 class 選擇    | `<button class="btn-primary">` | `driver.find_element(By.CSS_SELECTOR, ".btn-primary")`                        |
+| 按 id 選擇       | `<div id="loginButton">` | `driver.find_element(By.CSS_SELECTOR, "#loginButton")`                        |
+| 同時具有多個 class  | `<button class="btn btn-large">`   | `driver.find_element(By.CSS_SELECTOR, ".btn.btn-large")`    |
+| 後代元素（不限層級）    | `<div><input></input></div>`   | `driver.find_element(By.CSS_SELECTOR, "div input")`  |
+| 子元素（直接子節點）    | `<ul><li></li></ul>`  | `driver.find_element(By.CSS_SELECTOR, "ul > li")`  |
+| 屬性精準匹配        | `<input type="text">`  | `driver.find_element(By.CSS_SELECTOR, 'input[type="text"]')`  |
+| 屬性開頭為某字串（^=）  | `<a href="https://google.com">`  | `driver.find_element(By.CSS_SELECTOR, 'a[href^="https://"]')`  |
+| 屬性結尾為某字串（$=）  | `<img src="icon.png">`  | `driver.find_element(By.CSS_SELECTOR, 'img[src$=".png"]')`                    |
+| 屬性包含字串（*=）    | `<div class="box-search-area">` | `driver.find_element(By.CSS_SELECTOR, 'div[class*="search"]')` |
+| 第 n 個元素       | `<ul><li></li><li></li><li></li></ul>` | `driver.find_element(By.CSS_SELECTOR, "ul li:nth-child(3)")` |
+| 偶數 / 奇數       | `<tr></tr><tr></tr>…`  | `driver.find_element(By.CSS_SELECTOR, "tr:nth-child(even)")`  |
+| 最後一個元素        | `<ul><li></li><li></li></ul>` | `driver.find_element(By.CSS_SELECTOR, "ul li:last-child")`  |
+| 同層下一個元素（+）    | `<label></label><input>` | `driver.find_element(By.CSS_SELECTOR, "label + input")` |
+| 同層後面所有兄弟（~）   | `<h2></h2><p></p><p></p>` | `driver.find_element(By.CSS_SELECTOR, "h2 ~ p")`  |
+| 多條件 AND（同一元素） | `<input type="text" name="username">` | `driver.find_element(By.CSS_SELECTOR, 'input[type="text"][name="username"]')` |
+| 多選擇器 OR（`,`）  | `<button class="btn-primary">…` 或 `<button class="btn-main">…`  | `driver.find_elements(By.CSS_SELECTOR,".btn-primary, .btn-main")`  |
+
+
+## 實用補充
+
+### 實用 XPATH 用法
+- 用文字內容查找元素： `//*[text()='台北市']`
+- 找到父層元素： `//*[text()='台北市']/parent::*`
+
+
+### 查看找到的 element HTML
+```python
+elem = driver.find_element(By.XPATH, "//*[text()='台北市']")
+html = elem.get_attribute("outerHTML")
+print(html)
+```
 
