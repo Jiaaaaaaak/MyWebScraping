@@ -69,7 +69,7 @@ curl -L -o chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-p
 
 ### Webdriver 定位方法
 | 定位方法 | 說明 |
-|---|---|
+|-----|-----|
 | `find_element(By.ID, 'id')`      | 透過元素的 id 屬性來定位元素。    |
 | `find_element(By.NAME, 'name')`      | 透過元素的 name 屬性來定位元素。        |
 | `find_element(By.CLASS_NAME, 'class_name')` | 透過元素的 class 屬性來定位元素。       |
@@ -80,13 +80,13 @@ curl -L -o chromedriver.zip "https://storage.googleapis.com/chrome-for-testing-p
 | `find_element(By.CSS_SELECTOR, 'selector')`     | 透過 CSS 選擇器來定位元素。   |
 
 ### CSS Selector
-| 說明            | 範例 HTML + CSS                                                                              | Selenium 使用                                                                   |
-| ------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| 按 tag 名稱選擇    | `<input>` | `driver.find_element(By.CSS_SELECTOR, "input")`                               |
-| 按 class 選擇    | `<button class="btn-primary">` | `driver.find_element(By.CSS_SELECTOR, ".btn-primary")`                        |
-| 按 id 選擇       | `<div id="loginButton">` | `driver.find_element(By.CSS_SELECTOR, "#loginButton")`                        |
-| 同時具有多個 class  | `<button class="btn btn-large">`   | `driver.find_element(By.CSS_SELECTOR, ".btn.btn-large")`    |
-| 後代元素（不限層級）    | `<div><input></input></div>`   | `driver.find_element(By.CSS_SELECTOR, "div input")`  |
+| 說明 | 範例 HTML + CSS    | Selenium 使用 |
+|-----|--------------------| -------------- |
+| 按 tag 名稱選擇    | `<input>` | `driver.find_element(By.CSS_SELECTOR, "input")` |
+| 按 class 選擇    | `<button class="btn-primary">` | `driver.find_element(By.CSS_SELECTOR, ".btn-primary")` |
+| 按 id 選擇       | `<div id="loginButton">` | `driver.find_element(By.CSS_SELECTOR, "#loginButton")` |
+| 同時具有多個 class  | `<button class="btn btn-large">` | `driver.find_element(By.CSS_SELECTOR, ".btn.btn-large")`    |
+| 後代元素（不限層級）    | `<div><input></input></div>` | `driver.find_element(By.CSS_SELECTOR, "div input")`  |
 | 子元素（直接子節點）    | `<ul><li></li></ul>`  | `driver.find_element(By.CSS_SELECTOR, "ul > li")`  |
 | 屬性精準匹配        | `<input type="text">`  | `driver.find_element(By.CSS_SELECTOR, 'input[type="text"]')`  |
 | 屬性開頭為某字串（^=）  | `<a href="https://google.com">`  | `driver.find_element(By.CSS_SELECTOR, 'a[href^="https://"]')`  |
