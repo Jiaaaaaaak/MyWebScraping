@@ -19,7 +19,8 @@ options.add_argument("--incognito") # 無痕模式
 options.add_argument("--disable-popup-blocking") # 停用 Chrome 的彈窗阻擋功能。
 
 service = Service('./chromedriver.exe')  # 請根據實際路徑修改
-driver = webdriver.Chrome(service=service, options=options)
+driver = webdriver.Chrome(service=Service, options=options)
+# <Service一定要物件，所以不能./chromedriver.exe直接貼>
 
 # 開啟網頁
 driver.get("網頁 URL")
@@ -118,7 +119,7 @@ print(html)
 ### 實用 JS script
 **下滑至頁面底部**
 ```javascript
-window.scrollTo(0, docment.body.scrollHeight);
+window.scrollTo(0, document.body.scrollHeight);
 ```
 **開啟分頁**
 ```javascript
